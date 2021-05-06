@@ -45,6 +45,11 @@ public class LinkedList {
 			this.tail = myNode;
 		}
 	}
+	public void insertNode(INode myNode, INode newNode) {
+		INode tempNode = myNode.getNext();
+		myNode.setNext(newNode);
+		newNode.setNext(tempNode);
+	}
 	public static void main(String [] args) {
 		
 		MyNode<Integer> myFirstNode = new MyNode<>(70);
