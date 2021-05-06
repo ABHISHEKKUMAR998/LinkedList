@@ -97,6 +97,15 @@ public class LinkedList {
 		return found;
 	}
 	
+	public int size() {
+		int size = 0;
+		INode n = head;
+		while (n != null) {
+			size++;
+			n = n.getNext();
+		}
+		return size;
+	}
 	
 	
 	public void removeParticularNode(INode deleteNode) {
@@ -110,14 +119,5 @@ public class LinkedList {
 		tempNode.setNext(null);
 	}
 	
-	public int size() {
-		int size = 0;
-		INode n = head;
-		while (n != null) {
-			size++;
-			n = n.getNext();
-		}
-		return size;
-	}
-
+	
 } 
