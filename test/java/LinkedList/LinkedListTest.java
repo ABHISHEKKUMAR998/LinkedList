@@ -43,7 +43,7 @@ public class LinkedListTest {
 			LinkedList myLinkedList = new LinkedList();
 			myLinkedList.add(myFirstNode);
 			myLinkedList.append(myThirdNode);
-			myLinkedList.insertNode(myFirstNode, mySecondNode);
+			myLinkedList.insert(myFirstNode, mySecondNode);
 			myLinkedList.printMyNode();
 			boolean result = myLinkedList.head.equals(myFirstNode) && 
 							 myLinkedList.head.getNext().equals(mySecondNode) && 
@@ -84,4 +84,82 @@ public class LinkedListTest {
 							 myLinkedList.tail.equals(mySecondNode);
 			assertTrue(result);
 		}
-	}
+		@Test
+		public void givenElement_WhenSearch_ShouldPassTest() {
+			MyNode<Integer> myFirstNode = new MyNode<>(56);
+			MyNode<Integer> mySecondNode = new MyNode<>(30);
+			MyNode<Integer> myThirdNode = new MyNode<>(70);
+			LinkedList myLinkedList = new LinkedList();
+			myLinkedList.add(myFirstNode);
+			myLinkedList.append(mySecondNode);
+			myLinkedList.append(myThirdNode);
+			INode found = myLinkedList.search(mySecondNode.getKey());
+			boolean result = myLinkedList.head.equals(found) || 
+							 myLinkedList.head.getNext().equals(found) || 
+							 myLinkedList.tail.equals(found);
+			assertTrue(result);
+		}
+		@Test
+		public void givenElementWhenInsertedafterSomeNodeShouldPassTest() {
+			MyNode<Integer> myFirstNode = new MyNode<>(56);
+			MyNode<Integer> mySecondNode = new MyNode<>(30);
+			MyNode<Integer> myThirdNode = new MyNode<>(40);
+			MyNode<Integer> myFourthNode = new MyNode<>(70);
+			LinkedList myLinkedList = new LinkedList();
+			myLinkedList.add(myFirstNode);
+			myLinkedList.append(mySecondNode);
+			myLinkedList.append(myFourthNode);
+			INode found = myLinkedList.search(mySecondNode.getKey());
+			myLinkedList.insert(found, myThirdNode);
+			System.out.println("Insert element between 2 element: ");
+			myLinkedList.printMyNode();
+			boolean result = myLinkedList.head.equals(myFirstNode) &&
+							 myFirstNode.getNext().equals(mySecondNode) && 
+							 mySecondNode.getNext().equals(myThirdNode) &&
+							 myLinkedList.tail.equals(myFourthNode);
+			assertTrue(result);
+		}
+		@Test
+		public void givenElement_WhenDeletedAfterSearch_ShouldPassTest() {
+			MyNode<Integer> myFirstNode = new MyNode<>(56);
+			MyNode<Integer> mySecondNode = new MyNode<>(30);
+			MyNode<Integer> myThirdNode = new MyNode<>(40);
+			MyNode<Integer> myFourthNode = new MyNode<>(70);
+			LinkedList myLinkedList = new LinkedList();
+			myLinkedList.add(myFirstNode);
+			myLinkedList.append(mySecondNode);
+			myLinkedList.append(myThirdNode);
+			myLinkedList.append(myFourthNode);
+			System.out.println("Nodes : ");
+			myLinkedList.printMyNode();
+			INode found = myLinkedList.search(myThirdNode.getKey());
+			myLinkedList.removeParticularNode(found);
+			System.out.println("\nDeleting given node: ");
+			myLinkedList.printMyNode();
+			int size = myLinkedList.size();
+			System.out.print("\nSize of Linked List: " + size);
+		}
+		@Test
+		public void givenAllElements_GetSortedList() {
+			MyNode<Integer> myFirstNode = new MyNode<>(56);
+			MyNode<Integer> mySecondNode = new MyNode<>(30);
+			MyNode<Integer> myThirdNode = new MyNode<>(40);
+			MyNode<Integer> myFourthNode = new MyNode<>(70);
+			LinkedList myLinkedList = new LinkedList();
+			myLinkedList.add(myFirstNode);
+			myLinkedList.append(mySecondNode);
+			myLinkedList.append(myThirdNode);
+			myLinkedList.append(myFourthNode);
+			System.out.println("\nBefore Sorting: ");
+			myLinkedList.printMyNode();
+			myLinkedList.sortList();
+			System.out.println("\nAfter Sorting: ");
+			myLinkedList.printMyNode();
+			boolean result = myLinkedList.head.equals(myFirstNode) && 
+							 myFirstNode.getNext().equals(mySecondNode) &&
+							 mySecondNode.getNext().equals(myThirdNode) &&
+							 myLinkedList.tail.equals(myFourthNode);
+			assertTrue(result);
+		}
+	} 
+	
