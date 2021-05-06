@@ -22,6 +22,8 @@ public class LinkedList {
 		}
 	}
 	
+	
+
 
 	public void printMyNode() {
 		StringBuffer myNodes = new StringBuffer("My Nodes: ");
@@ -36,6 +38,10 @@ public class LinkedList {
 		System.out.println(myNodes);
 	}
 	
+	
+	
+	
+
 	public void append(INode myNode) {
 		if (this.tail == null) {
 			this.tail = myNode;
@@ -48,17 +54,24 @@ public class LinkedList {
 		}
 	}
 	
+	
+
 	public void insert(INode myNode, INode newNode) {
 		INode tempNode = myNode.getNext();
 		myNode.setNext(newNode);
 		newNode.setNext(tempNode);
 	}
 	
+	
+
 	public INode pop() {
 		INode tempNode = this.head;
 		this.head = head.getNext();
 		return tempNode;
 	}
+	
+	
+	
 	public INode popLast() {
 		INode tempNode = this.head;
 		while (!tempNode.getNext().equals(tail)) {
@@ -68,18 +81,24 @@ public class LinkedList {
 		tempNode = tempNode.getNext();
 		return tempNode;
 	}
+	
+	
+	
 	public INode search(Integer key) {
 		INode tempNode = this.head;
 		INode found = null;
 		while (tempNode != null && tempNode.getNext() != null) {
 			if (tempNode.getKey() == key) {
-			
+
 				found = tempNode;
 			}
 			tempNode = tempNode.getNext();
 		}
 		return found;
 	}
+	
+	
+	
 	public void removeParticularNode(INode deleteNode) {
 		INode tempNode = this.head;
 		INode prev = null;
@@ -91,4 +110,14 @@ public class LinkedList {
 		tempNode.setNext(null);
 	}
 	
+	public int size() {
+		int size = 0;
+		INode n = head;
+		while (n != null) {
+			size++;
+			n = n.getNext();
+		}
+		return size;
+	}
+
 } 
